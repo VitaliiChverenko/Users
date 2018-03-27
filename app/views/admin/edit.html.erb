@@ -1,0 +1,32 @@
+ <div class = 'container'>
+  <%= form_with(model: @user, local: true) do |form| %>
+    <p>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+    </p>
+   
+    <p>
+      <%= form.label :surname %><br>
+      <%= form.text_field :surname %>
+    </p>
+
+     <div class="field form-group">
+       <%= radio_button("user", "sex", "Male") %>
+       <%= form.label :male %><br />
+       <%= radio_button("user", "sex", "Female") %>
+       <%= form.label :female %><br />
+     </div>
+
+    <p>
+      <%= form.label :age %><br>
+      <%= form.text_field :age %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p> 
+  <% end %>
+  <% if can? :manage, :all %>
+    <%= link_to "Delete account", @user, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+ </div>
